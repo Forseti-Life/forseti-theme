@@ -1,8 +1,10 @@
 langcode: en
 status: true
 dependencies:
+  config:
+    - system.menu.footer
   module:
-    - forseti_content
+    - system
   theme:
     - forseti
 id: forseti_footer
@@ -10,10 +12,13 @@ theme: forseti
 region: footer
 weight: -5
 provider: null
-plugin: forseti_footer_menu
+plugin: "system_menu_block:footer"
 settings:
-  id: forseti_footer_menu
-  label: 'Forseti Footer Menu'
-  label_display: '0'
-  provider: forseti_content
+  id: "system_menu_block:footer"
+  label: "Footer menu"
+  label_display: "0"
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
 visibility: {}
