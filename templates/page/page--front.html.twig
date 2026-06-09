@@ -52,17 +52,17 @@
       {% endblock %}
 
       {% block right %}
-        {% if page.navbar_right or not logged_in %}
-          {{ attach_library('forseti/navbar_right') }}
-          <div class="ms-auto region-navbar-right d-flex align-items-center gap-2">
-            {% if page.navbar_right %}
-              {{ page.navbar_right }}
-            {% endif %}
-            {% if not logged_in %}
-              <a href="{{ path('user.login') }}" class="btn btn-outline-light btn-sm navbar-signin-button">Sign in</a>
-            {% endif %}
-          </div>
-        {% endif %}
+        {{ attach_library('forseti/navbar_right') }}
+        <div class="ms-auto region-navbar-right d-flex align-items-center gap-2">
+          {% if page.navbar_right %}
+            {{ page.navbar_right }}
+          {% endif %}
+          {% if logged_in %}
+            <a href="{{ path('user.logout') }}" class="btn btn-outline-light btn-sm navbar-signin-button">Logout</a>
+          {% else %}
+            <a href="{{ path('user.login') }}" class="btn btn-outline-light btn-sm navbar-signin-button">Sign in</a>
+          {% endif %}
+        </div>
       {% endblock %}
     {% endembed %}
   {% endblock %}
