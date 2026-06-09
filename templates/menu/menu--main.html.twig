@@ -10,7 +10,7 @@
   We call a macro which calls itself to render the full tree.
   @see https://twig.symfony.com/doc/3.x/tags/macro.html
 #}
-{% macro menu_links(items, attributes, menu_level) %}
+{% macro menu_links(items, attributes, menu_level, logged_in_state) %}
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
@@ -36,7 +36,7 @@
                aria-expanded="false">
               {{ item.title }}
             </a>
-            {{ menus.menu_links(item.below, attributes.removeClass('nav', 'navbar-nav'), menu_level + 1) }}
+            {{ menus.menu_links(item.below, attributes.removeClass('nav', 'navbar-nav'), menu_level + 1, logged_in_state) }}
           </li>
         {% else %}
           {# Regular link without children #}
@@ -46,7 +46,7 @@
         {% endif %}
       {% endif %}
     {% endfor %}
-    {% if menu_level == 0 and not logged_in %}
+    {% if menu_level == 0 and not logged_in_state %}
       <li class="nav-item">
         <a href="/user/login?destination=/jobhunter" class="nav-link">Job Hunter</a>
       </li>
@@ -55,4 +55,4 @@
   {% endif %}
 {% endmacro %}
 
-{{ menus.menu_links(items, attributes, 0) }}
+{{ menus.menu_links(items, attributes, 0, logged_in) }}
