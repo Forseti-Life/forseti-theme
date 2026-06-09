@@ -46,6 +46,11 @@
         {% endif %}
       {% endif %}
     {% endfor %}
+    {% if menu_level == 0 and not logged_in %}
+      <li class="nav-item">
+        <a href="/user/login?destination=/jobhunter" class="nav-link">Job Hunter</a>
+      </li>
+    {% endif %}
     </ul>
   {% endif %}
 {% endmacro %}
