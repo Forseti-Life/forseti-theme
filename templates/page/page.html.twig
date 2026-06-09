@@ -101,10 +101,15 @@
       {% endblock %}
 
       {% block right %}
-        {% if page.navbar_right %}
+        {% if page.navbar_right or not logged_in %}
           {{ attach_library('forseti/navbar_right') }}
-          <div class="ms-auto region-navbar-right">
-            {{ page.navbar_right }}
+          <div class="ms-auto region-navbar-right d-flex align-items-center gap-2">
+            {% if page.navbar_right %}
+              {{ page.navbar_right }}
+            {% endif %}
+            {% if not logged_in %}
+              <a href="{{ path('user.login') }}" class="btn btn-outline-primary btn-sm navbar-signin-button">Sign in</a>
+            {% endif %}
           </div>
         {% endif %}
       {% endblock %}
