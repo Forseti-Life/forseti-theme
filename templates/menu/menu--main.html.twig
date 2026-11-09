@@ -28,7 +28,7 @@
       
         {% if item.below %}
           {# Item has children - render as dropdown #}
-          <li{{ item.attributes.addClass(item_classes) }}>
+          <li{{ item.attributes.removeClass('navbar-text').addClass(item_classes) }}>
             <a href="{{ item.url }}" 
                class="{{ menu_level == 0 ? 'nav-link dropdown-toggle' : 'dropdown-item dropdown-toggle' }}" 
                id="dropdown-{{ item.title|clean_id }}" 
